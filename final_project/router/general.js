@@ -53,6 +53,7 @@ public_users.get('/author/:author',function (req, res) {
 
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
+    let titlePromise = new Promise((resolve,reject) => {
     const title = req.params.title;
     let matching = [];
     for (const [key, value] of Object.entries(books)) {
@@ -61,6 +62,8 @@ public_users.get('/title/:title',function (req, res) {
         }
       }
     res.send(matching);
+    });
+    titlePromise();
 });
 
 //  Get book review
