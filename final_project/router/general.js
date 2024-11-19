@@ -38,6 +38,7 @@ public_users.get('/isbn/:isbn',function (req, res) {
   
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
+    let authorPromise = new Promise((resolve,reject) => {
     const author = req.params.author;
     let matching = [];
     for (const [key, value] of Object.entries(books)) {
@@ -46,6 +47,8 @@ public_users.get('/author/:author',function (req, res) {
         }
       }
     res.send(matching);
+    });
+    authorPromise();
 });
 
 // Get all books based on title
